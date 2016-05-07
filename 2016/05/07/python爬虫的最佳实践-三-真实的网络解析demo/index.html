@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>python爬虫的最佳实践(三)--真实的网络解析demo | Darkeril&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="课前ps：终于到我们的正文了，想想还有点小激动呢！下来我们就延续我们最佳实践的步骤。
+##代码预览123456789101112131415161718192021222324#coding:utf-8from bs4 import BeautifulSoupimport requestsdef detailOper(url):    web_data = requests.get(url)">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python爬虫的最佳实践(三)--真实的网络解析demo">
+<meta property="og:url" content="http://yoursite.com/2016/05/07/python爬虫的最佳实践-三-真实的网络解析demo/index.html">
+<meta property="og:site_name" content="Darkeril's blog">
+<meta property="og:description" content="课前ps：终于到我们的正文了，想想还有点小激动呢！下来我们就延续我们最佳实践的步骤。
+##代码预览123456789101112131415161718192021222324#coding:utf-8from bs4 import BeautifulSoupimport requestsdef detailOper(url):    web_data = requests.get(url)">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1957582-c595cc97d074d2eb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1957582-dbcc6d4b703e73c6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1957582-bee3de94a97991d8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1957582-e17e885accfe272e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1957582-64d4edc78b4c2412.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2016-05-07T10:20:54.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="python爬虫的最佳实践(三)--真实的网络解析demo">
+<meta name="twitter:description" content="课前ps：终于到我们的正文了，想想还有点小激动呢！下来我们就延续我们最佳实践的步骤。
+##代码预览123456789101112131415161718192021222324#coding:utf-8from bs4 import BeautifulSoupimport requestsdef detailOper(url):    web_data = requests.get(url)">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/1957582-c595cc97d074d2eb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+  
+    <link rel="alternative" href="/atom.xml" title="Darkeril&#39;s blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="http://o6omzqff6.bkt.clouddn.com/icon.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Darkeril</a></h1>
+		</hgroup>
+
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						
+						<li>关于我</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="#" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="#" title="weibo">weibo</a>
+					        
+								<a class="rss" target="_blank" href="#" title="rss">rss</a>
+					        
+								<a class="zhihu" target="_blank" href="#" title="zhihu">zhihu</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/python/" style="font-size: 10px;">python</a>
+					</div>
+				</section>
+				
+				
+				
+
+				
+				
+				<section class="switch-part switch-part3">
+				
+					<div id="js-aboutme">python的忠实爱好者，QQ：403508380，QQ群：498945822</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">Darkeril</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+			
+				<img lazy-src="http://o6omzqff6.bkt.clouddn.com/icon.jpg" class="js-avatar">
+			
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Darkeril</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="#" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="#" title="weibo">weibo</a>
+			        
+						<a class="rss" target="_blank" href="#" title="rss">rss</a>
+			        
+						<a class="zhihu" target="_blank" href="#" title="zhihu">zhihu</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap"><article id="post-python爬虫的最佳实践-三-真实的网络解析demo" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/05/07/python爬虫的最佳实践-三-真实的网络解析demo/" class="article-date">
+  	<time datetime="2016-05-07T10:17:13.000Z" itemprop="datePublished">2016-05-07</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      python爬虫的最佳实践(三)--真实的网络解析demo
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li></ul>
+	</div>
+
+        
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>课前ps：终于到我们的正文了，想想还有点小激动呢！下来我们就延续我们最佳实践的步骤。</p>
+<p>##代码预览<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">#coding:utf-8</span><br><span class="line">from bs4 import BeautifulSoup</span><br><span class="line">import requests</span><br><span class="line"></span><br><span class="line">def detailOper(url):</span><br><span class="line">    web_data = requests.get(url)</span><br><span class="line">    soup = BeautifulSoup(web_data.text, &apos;lxml&apos;)</span><br><span class="line">    titles = soup.select(&apos;div.list &gt; ul &gt; li &gt; div &gt; p.infoBox &gt; a&apos;)</span><br><span class="line">    prices = soup.select(&apos;div.list &gt; ul &gt; li &gt; div &gt; p.priType-s &gt; span &gt; i&apos;)</span><br><span class="line">    for title, price in zip(titles, prices):</span><br><span class="line">        data = &#123;</span><br><span class="line">            &apos;title&apos;: title.get_text(),</span><br><span class="line">            &apos;detailHerf&apos;: title.get(&apos;href&apos;),</span><br><span class="line">            &apos;price&apos;:price.get_text().replace(u&apos;万&apos;, &apos;&apos;).replace(&apos; &apos;, &apos;&apos;)</span><br><span class="line">        &#125;</span><br><span class="line">        print(data)</span><br><span class="line"></span><br><span class="line">def start():</span><br><span class="line">    urls = [&apos;http://www.guazi.com/tj/buy/o&#123;&#125;/&apos;.format(str(i)) for i in range(1, 30, 1)]</span><br><span class="line">    for url in urls:</span><br><span class="line">        detailOper(url)</span><br><span class="line"></span><br><span class="line">if __name__ == &apos;__main__&apos;:</span><br><span class="line">    start()</span><br></pre></td></tr></table></figure></p>
+<a id="more"></a>
+<p>##代码剖析</p>
+<p>怎么样，上面的代码不多吧，我们来慢慢分析：</p>
+<p>ps：最近在考虑买个二手车练练手，所以最后选了瓜子网作为我们的练手对象，谁让我经常访问你呢~</p>
+<p>这两句引入我们对应的库，beautifulsoup和requests<br><code>from bs4 import BeautifulSoup</code><br><code>import requests</code></p>
+<p>这一句调用了我们这个py脚本的入口start函数<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">if __name__ == &apos;__main__&apos;:</span><br><span class="line">    start()</span><br></pre></td></tr></table></figure></p>
+<p>函数start的作用是构建我们要访问的urls，然后逐个调用detailOper()函数<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">def start():</span><br><span class="line">    urls = [&apos;http://www.guazi.com/tj/buy/o&#123;&#125;/&apos;.format(str(i)) for i in range(1, 30, 1)]</span><br><span class="line">    for url in urls:</span><br><span class="line">        detailOper(url)</span><br></pre></td></tr></table></figure></p>
+<p>其实我们通过观察瓜子网的url就可以发现其规律（如下图），当我们选择第二分特的时候，url变成了<code>http://www.guazi.com/tj/buy/o2/</code>，当我们选择第三分页的时候url变成了<code>http://www.guazi.com/tj/buy/o3/</code>，我们想要抓取瓜子在天津地区所有的二手车，那么我们只需要访问29次不同的分页即可，这边是我们start函数的作用，构建了29次不同的url然后分别请求抓取数据<br><img src="http://upload-images.jianshu.io/upload_images/1957582-c595cc97d074d2eb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="9.png"></p>
+<p>接下来，到了我们今天的重点，如何抓取网页数据并筛选出来我们想要的，我们来一起看看detailOper()函数:</p>
+<p><code>web_data = requests.get(url)</code><br>通过requests.get()函数获取了一个response对象</p>
+<p><code>soup = BeautifulSoup(web_data.text, &#39;lxml&#39;)</code><br>首先<code>web_data.text</code>为抓取到的网页主体，也就是所谓的网页源代码，我们在浏览器上单击右键就可以看到获取网页源代码选项。而上面这行代码构建了一个beautifulsoup解析器，后面的参数传入解析器的type，有很多种，比如lxml，xml，html5lib，我们用的是lxml</p>
+<p><code>titles = soup.select(&#39;div.list &gt; ul &gt; li &gt; div &gt; p.infoBox &gt; a&#39;)</code><br>上面这段代码我们用soup对象的select函数筛选我们想要的网页信息，其中传入的参数是Css Path，Css Path的作用就是帮我们定位到我们需要的信息，方便我们进行筛选，那么如何获取Css Path呢？如下图步骤</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1957582-dbcc6d4b703e73c6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="6.png"><br>首先，在网页中选中我们想要的元素，比如每个汽车的标题，然后选择其中一个的位置右键浏览器，选择其中的审查元素，当然，不同的浏览器可能名称不太一样，有的叫检查。然后我们可以看到如下画面：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1957582-bee3de94a97991d8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="7.png"></p>
+<p>浏览器帮你自动定位到了你要筛选的信息的位置，然后在这个位置上点击右键就可以看到有选项叫Copy Css Path，这时候我们就得到了我们想要的信息的Css Path，是不是so easy呢？有同学可能还看到了有XPath，这也是可以用来定位的，使用方式和Css path类似，但是beautifulsoup支持的是CSS Selector，如果以后大家使用scrapy框架的话可能会用到XPath</p>
+<p>接下来我们得到了<code>body &gt; div.w &gt; div.list &gt; ul &gt; li:nth-child(40) &gt; div &gt; p.infoBox &gt; a</code>首先去掉前端一些无用的<code>body &gt; div.w &gt;</code>路径，因为我们整个网站的主体都是在body的class属性为”w”的div下，所以去掉它们能更好的选择我们想要的东西，接下来得到了<code>div.list &gt; ul &gt; li:nth-child(40) &gt; div &gt; p.infoBox &gt; a</code>，这一条css path最后取出的结果是网页的第40个li元素下对应的title，鞋同应该已经发现了<code>li:nth-child(40)</code>，后面的nth-child()定位的就是第几个li元素，我们可以观察一下网页的构成，如下图<br><img src="http://upload-images.jianshu.io/upload_images/1957582-e17e885accfe272e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="8.png"><br>我们可以看到每个li标签其实就对应了上图中一个车，我们要取出所有的符合条件的li标签下的内容，所以我们需要去掉限制条件<code>div.list &gt; ul &gt; li&gt; div &gt; p.infoBox &gt; a</code>于是乎这便是我们的想要的Css Path，这时候我们取出的是一个titles的列表，里面存的是这个页面所有汽车的title，同理我们对着下面的价格取Css Path得到了<code>div.list &gt; ul &gt; li &gt; div &gt; p.priType-s &gt; span &gt; i</code>，这时候，我们已经获取到了我们想要的东西。</p>
+<p>我们来分析一下最后一段代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">for title, price in zip(titles, prices):</span><br><span class="line">        data = &#123;</span><br><span class="line">            &apos;title&apos;: title.get_text(),</span><br><span class="line">            &apos;detailHerf&apos;: title.get(&apos;href&apos;),</span><br><span class="line">            &apos;price&apos;:price.get_text().replace(u&apos;万&apos;, &apos;&apos;).replace(&apos; &apos;, &apos;&apos;)</span><br><span class="line">        &#125;</span><br><span class="line">        print(data)</span><br></pre></td></tr></table></figure></p>
+<p>把我们获取到的title和price挨个取出来放入一个名为data的数据字典中，我们可以看到<code>&#39;title&#39;: title.get_text()</code>，因为我们取出的title其实是beautifulsoup解析出来的一个对象，我们要获取具体属性需要使用一些它提供的函数，这个get_text()函数就是获取标签中间文字属性，知道html结构的同学可能好理解一些，例如我们这次获取到的是<code>&lt;a&gt;test&lt;/a&gt;</code>标签，那么get_text()取出的就是中间部分的test，下面是真实环境，所以我们取出了：海马M3 2013款 1.5 手动 标准型<br><code>&lt;a baidu_alog=&quot;pc_list_xiangqingye&amp;click&amp;pc_list_xiangqingye_c&quot; title=&quot;海马M3 2013款 1.5 手动 标准型&quot; href=&quot;/tj/3000057568x.htm&quot; target=&quot;_blank&quot; class=&quot;info-title&quot;&gt;海马M3 2013款 1.5 手动 标准型&lt;/a&gt;</code></p>
+<p><code>&#39;detailHerf&#39;: title.get(&#39;href&#39;)</code>get(属性名)方法取出的是标签中的各个属性，我们观察上面的a标签发现它有个href属性对应的是车况的具体网页，然后我们就可以通过.get(属性名)的方式获取它的值。</p>
+<p>至此，我们真实环境中的网页解析demo1就结束了，是不是很简单呢？<br>ps：可能有些大神或者有基础的同学觉得我很啰嗦，但是我想说的是，我想让没有基础的同学也能看懂代码，也能明白每句的含义，因为这很重要，我们有时候往往只是知道这么做可以达到目的，但是不知道这么做的原因。</p>
+<p>##写在最后<br>最佳实践的前两步我已经帮你们完成了，也就是给你们一个demo，并且帮你们深入剖析了demo，那么下一步，在demo之上的扩展就要靠你们了。我留一个小作业，有兴趣的同学可以做一下，我们的demo只扒取了天津地区的二手车，那么，你们就来试试扒取瓜子网上全国所有地区的二手车信息吧~（瓜子表示自己又躺枪了）给大家一个提示<br><img src="http://upload-images.jianshu.io/upload_images/1957582-64d4edc78b4c2412.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="10.png"><br>两个位置可以分别获取全国其他地区的瓜子二手车链接和每个地区拥有的车的数量哦，我们可以实现一个全自动的抓取整个瓜子网所有二手车信息的爬虫~<br>下一章我们讲解如何扒取动态加载的信息~</p>
+<blockquote>
+<p>有兴趣的同学可以加群498945822一起交流学习哦~~<br>发现问题的同学欢迎指正，直接说就行，不用留面子，博主脸皮厚！</p>
+</blockquote>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/05/07/python爬虫的最佳实践-四-扒取异步加载内容并存入mongo数据库/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          python爬虫的最佳实践(四)--扒取异步加载内容并存入mongo数据库
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/05/07/python爬虫的最佳实践-二-环境搭建/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">python爬虫的最佳实践(二)--环境搭建</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+    <a class="jiathis_button_twitter"></a>
+    <a class="jiathis_button_plus"></a> 
+    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="python爬虫的最佳实践-三-真实的网络解析demo" data-title="python爬虫的最佳实践(三)--真实的网络解析demo" data-url="http://yoursite.com/2016/05/07/python爬虫的最佳实践-三-真实的网络解析demo/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 Darkeril
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>

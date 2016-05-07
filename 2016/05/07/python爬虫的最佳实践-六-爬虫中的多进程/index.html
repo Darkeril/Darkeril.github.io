@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>python爬虫的最佳实践(六)--爬虫中的多进程 | Darkeril&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="ps：写给新手看的，大神看到了轻喷，给我留点面子~">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python爬虫的最佳实践(六)--爬虫中的多进程">
+<meta property="og:url" content="http://yoursite.com/2016/05/07/python爬虫的最佳实践-六-爬虫中的多进程/index.html">
+<meta property="og:site_name" content="Darkeril's blog">
+<meta property="og:description" content="ps：写给新手看的，大神看到了轻喷，给我留点面子~">
+<meta property="og:updated_time" content="2016-05-07T10:26:33.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="python爬虫的最佳实践(六)--爬虫中的多进程">
+<meta name="twitter:description" content="ps：写给新手看的，大神看到了轻喷，给我留点面子~">
+  
+    <link rel="alternative" href="/atom.xml" title="Darkeril&#39;s blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="http://o6omzqff6.bkt.clouddn.com/icon.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Darkeril</a></h1>
+		</hgroup>
+
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						
+						<li>关于我</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="#" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="#" title="weibo">weibo</a>
+					        
+								<a class="rss" target="_blank" href="#" title="rss">rss</a>
+					        
+								<a class="zhihu" target="_blank" href="#" title="zhihu">zhihu</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/python/" style="font-size: 10px;">python</a>
+					</div>
+				</section>
+				
+				
+				
+
+				
+				
+				<section class="switch-part switch-part3">
+				
+					<div id="js-aboutme">python的忠实爱好者，QQ：403508380，QQ群：498945822</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">Darkeril</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+			
+				<img lazy-src="http://o6omzqff6.bkt.clouddn.com/icon.jpg" class="js-avatar">
+			
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Darkeril</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="#" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="#" title="weibo">weibo</a>
+			        
+						<a class="rss" target="_blank" href="#" title="rss">rss</a>
+			        
+						<a class="zhihu" target="_blank" href="#" title="zhihu">zhihu</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap"><article id="post-python爬虫的最佳实践-六-爬虫中的多进程" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/05/07/python爬虫的最佳实践-六-爬虫中的多进程/" class="article-date">
+  	<time datetime="2016-05-07T10:23:41.000Z" itemprop="datePublished">2016-05-07</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      python爬虫的最佳实践(六)--爬虫中的多进程
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li></ul>
+	</div>
+
+        
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>ps：写给新手看的，大神看到了轻喷，给我留点面子~</p>
+<a id="more"></a>
+<p>##写在前面<br>为什么选用多进程而不选用多线程，这是考虑到了诸多的实际情况最终做出的选择。</p>
+<ul>
+<li>在python环境下，多进程稍稍比多线程好实现好理解一点。</li>
+<li>因为爬虫大多数都是运行在linux内核的服务器上面，而在linux操作系统下，多进程要比多线程更加合适，因为调度开销和多线程差不多，但是进程性能更好。如果在windows系统下跑爬虫的话，建议使用框架或者使用多线程。</li>
+<li>爬虫毕竟不是服务器交互，没有人会开1k的线程去跑这个，所以一般情况下我们把自己爬虫的效率提升几倍即可。</li>
+</ul>
+<p>有兴趣的同学可以去看一下进程和线程的区别，据说面试容易被问喔~我们今天就讲一下简单的多进程的实现就好了，如果你想深入爬虫效率研究可以好好研究一下多进程和多线程相关~</p>
+<p>##代码预览<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">#coding:utf-8</span><br><span class="line">import multiprocessing</span><br><span class="line">from bs4 import BeautifulSoup</span><br><span class="line">import requests</span><br><span class="line"></span><br><span class="line">def pageUrls(url):</span><br><span class="line">    web_data = requests.get(url)</span><br><span class="line">    soup = BeautifulSoup(web_data.text, &apos;lxml&apos;)</span><br><span class="line">    sum = int(soup.select(&apos;span.total &gt; em:nth-of-type(1)&apos;)[0].get_text())</span><br><span class="line">    pageNum = sum/50</span><br><span class="line">    return [url+&apos;/loupan/s?p=&#123;&#125;&apos;.format(str(i)) for i in range(1, pageNum+2, 1)]</span><br><span class="line"></span><br><span class="line">def detailPage(myurl):</span><br><span class="line">    urls = pageUrls(myurl)</span><br><span class="line">    for url in urls:</span><br><span class="line">        web_data = requests.get(url)</span><br><span class="line">        soup = BeautifulSoup(web_data.text, &apos;lxml&apos;)</span><br><span class="line">        titles = soup.select(&apos;div.list-results &gt; div.key-list &gt; div &gt; div.infos &gt; div &gt; h3 &gt; a&apos;)</span><br><span class="line">        for title in titles:</span><br><span class="line">            print url</span><br><span class="line">            print title.get_text()</span><br><span class="line">            print title.get(&apos;href&apos;)</span><br><span class="line"></span><br><span class="line">def main(urls):</span><br><span class="line">    pool = multiprocessing.Pool(multiprocessing.cpu_count())</span><br><span class="line">    for url in urls:</span><br><span class="line">        pool.apply_async(detailPage, (url, ))</span><br><span class="line">    # pool.map(detailPage, urls)</span><br><span class="line">    pool.close()</span><br><span class="line">    pool.join()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">if __name__ == &quot;__main__&quot;:</span><br><span class="line">    startUrl = &apos;http://tj.fang.anjuke.com/?from=navigation&apos;</span><br><span class="line">    web_data = requests.get(startUrl)</span><br><span class="line">    soup = BeautifulSoup(web_data.text, &apos;lxml&apos;)</span><br><span class="line">    urls = [url.get(&apos;href&apos;) for url in soup.select(&apos;.city-mod &gt; dl &gt; dd &gt; a&apos;)]</span><br><span class="line">    main(urls)</span><br></pre></td></tr></table></figure></p>
+<p>##代码剖析<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">if __name__ == &quot;__main__&quot;:</span><br><span class="line">    startUrl = &apos;http://tj.fang.anjuke.com/?from=navigation&apos;</span><br><span class="line">    web_data = requests.get(startUrl)</span><br><span class="line">    soup = BeautifulSoup(web_data.text, &apos;lxml&apos;)</span><br><span class="line">    urls = [url.get(&apos;href&apos;) for url in soup.select(&apos;.city-mod &gt; dl &gt; dd &gt; a&apos;)]</span><br><span class="line">    main(urls)</span><br></pre></td></tr></table></figure></p>
+<p>在这里讲一个小知识点，<code>if __name__ == &quot;__main__&quot;:</code>这段代码的作用是保证在这个py文件被import的时候不会被运行，只有主动执行它的时候才会运行。<br>这次我们扒取的是安居客的住房信息，上面那一段代码相信大家都能看懂，从入口进入，取到全国各地城市的链接，然后进入main函数</p>
+<p><code>pool = multiprocessing.Pool(multiprocessing.cpu_count())</code><br>multiprocessing是python中标准的多进程库，上面代码的意思是创建一个进程池，进程个数为cpu内核数。这里有个小知识，电脑的cpu有多少内核便可以同时执行多少个进程，当然你也可以填的很多，只是作用不大而已，并不是进程数越多就会执行的越快。</p>
+<p><code>pool.apply_async(detailPage, (url, ))</code><br>apply_async函数从进程池中取出一个进程执行func，args为func的参数，我们这段代码不断地从进程池中取出进程去执行我们的detailPage方法。当然，也可以采用下面哪种方式：<br><code>pool.map(detailPage, urls)</code><br>map方法，将detailPage()函数作用到表的每个元素上，表中每个元素都会被作用到。这两种方式都可以~</p>
+<p><code>pool.close()</code>关闭进程池，进程池不会再创建新的进程<br><code>pool.join()</code>wait进程池中的全部进程,也就是用来等待进程池中的worker进程执行完毕，防止主进程在worker进程结束前结束</p>
+<p>这样，对于我的电脑来说等于开了8个进程去并行爬虫（没做反扒一会就会被封了哈哈~），经过我测试速度比单个进程快了4倍左右，还是很有用的~~</p>
+<p>剩下的两个函数我就不多赘述了pageUrls，根据页面上数据量的多少生成page分页的url，detailPage扒取每个page分页的所有楼盘的标题信息。</p>
+<p>今天我们介绍了多进程，同时，实践了如何从网站的一个入口延伸进而抓取整个网站的内容。当然，每个人写代码的习惯不同，当你多多练习的时候自然有自己的方式去实现你想要的功能。</p>
+<p>ps：今天突然想起来，大家在做爬虫的时候尽量先扒到链接，存在数据库之后再去扒分页里面的详细内容，因为这样速度不慢而且容错率很高，也很容易做断点续扒~</p>
+<p>##写在最后<br>经过前面几章的学习，我相信你已经可以扒取大部分网站了，并且有不错的效率。下一章我们将学习py爬虫的框架pyspider~我觉得还是很好用的~</p>
+<blockquote>
+<p>有兴趣的同学可以加群498945822一起交流学习哦~~<br>发现问题的同学欢迎指正，直接说就行，不用留面子，博主脸皮厚！</p>
+</blockquote>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/05/07/python爬虫的最佳实践-七-pyspider框架的使用/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          python爬虫的最佳实践(七)--pyspider框架的使用
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/05/07/python爬虫的最佳实践-五-selenium-PhantomJS的简单使用/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">python爬虫的最佳实践(五)--selenium+PhantomJS的简单使用</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+    <a class="jiathis_button_twitter"></a>
+    <a class="jiathis_button_plus"></a> 
+    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="python爬虫的最佳实践-六-爬虫中的多进程" data-title="python爬虫的最佳实践(六)--爬虫中的多进程" data-url="http://yoursite.com/2016/05/07/python爬虫的最佳实践-六-爬虫中的多进程/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 Darkeril
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>
