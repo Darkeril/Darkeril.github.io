@@ -7,42 +7,42 @@
   <title>python爬虫的最佳实践(七)--pyspider框架的使用 | Darkeril&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="Ps：惯例ps环节，经过前面几章的学习，写一些简单的爬虫已经是手到擒来了吧。这章我们看看如何使用pyspider框架来写爬虫~
-##环境配置在这之前简单介绍一下为什么选择这个框架：
+环境配置在这之前简单介绍一下为什么选择这个框架：
 
 这个框架是共和国人民写的(最强大的理由，没有之一)。
 其次，有webUi的界面，如果你有服务器，那么随时随地都可以编写爬虫，在线调试的机制也做得很好。
 多任务并行，健全的任务管理机制。
 支持各种主流数据库。
 
-建议大">
+建议大家去">
 <meta property="og:type" content="article">
 <meta property="og:title" content="python爬虫的最佳实践(七)--pyspider框架的使用">
 <meta property="og:url" content="http://yoursite.com/2016/05/07/python爬虫的最佳实践-七-pyspider框架的使用/index.html">
 <meta property="og:site_name" content="Darkeril's blog">
 <meta property="og:description" content="Ps：惯例ps环节，经过前面几章的学习，写一些简单的爬虫已经是手到擒来了吧。这章我们看看如何使用pyspider框架来写爬虫~
-##环境配置在这之前简单介绍一下为什么选择这个框架：
+环境配置在这之前简单介绍一下为什么选择这个框架：
 
 这个框架是共和国人民写的(最强大的理由，没有之一)。
 其次，有webUi的界面，如果你有服务器，那么随时随地都可以编写爬虫，在线调试的机制也做得很好。
 多任务并行，健全的任务管理机制。
 支持各种主流数据库。
 
-建议大">
+建议大家去">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1957582-f49d3c82a5ac088f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1957582-03b38dee20f1f69d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1957582-2f645b71fb779289.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2016-05-07T10:26:13.000Z">
+<meta property="og:updated_time" content="2016-05-07T13:16:43.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python爬虫的最佳实践(七)--pyspider框架的使用">
 <meta name="twitter:description" content="Ps：惯例ps环节，经过前面几章的学习，写一些简单的爬虫已经是手到擒来了吧。这章我们看看如何使用pyspider框架来写爬虫~
-##环境配置在这之前简单介绍一下为什么选择这个框架：
+环境配置在这之前简单介绍一下为什么选择这个框架：
 
 这个框架是共和国人民写的(最强大的理由，没有之一)。
 其次，有webUi的界面，如果你有服务器，那么随时随地都可以编写爬虫，在线调试的机制也做得很好。
 多任务并行，健全的任务管理机制。
 支持各种主流数据库。
 
-建议大">
+建议大家去">
 <meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/1957582-f49d3c82a5ac088f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
   
     <link rel="alternative" href="/atom.xml" title="Darkeril&#39;s blog" type="application/atom+xml">
@@ -238,7 +238,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>Ps：惯例ps环节，经过前面几章的学习，写一些简单的爬虫已经是手到擒来了吧。这章我们看看如何使用pyspider框架来写爬虫~</p>
-<p>##环境配置<br>在这之前简单介绍一下为什么选择这个框架：</p>
+<h2 id="环境配置"><a href="#环境配置" class="headerlink" title="环境配置"></a>环境配置</h2><p>在这之前简单介绍一下为什么选择这个框架：</p>
 <ol>
 <li>这个框架是共和国人民写的(最强大的理由，没有之一)。</li>
 <li>其次，有webUi的界面，如果你有服务器，那么随时随地都可以编写爬虫，在线调试的机制也做得很好。</li>
@@ -259,8 +259,8 @@
 </ul>
 <p>在终端输入pyspider启动框架，进入<a href="http://localhost:5000/" target="_blank" rel="external">http://localhost:5000/</a>，如图所示：<br><img src="http://upload-images.jianshu.io/upload_images/1957582-03b38dee20f1f69d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="2.png"></p>
 <p>这样就可以开始使用了~</p>
-<p>##代码预览<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">import re</span><br><span class="line">from pyspider.libs.base_handler import *</span><br><span class="line"></span><br><span class="line">class Handler(BaseHandler):</span><br><span class="line"></span><br><span class="line">    @every(minutes=24 * 60)</span><br><span class="line">    def on_start(self):</span><br><span class="line">        self.crawl(&apos;http://www.imdb.com/search/title?count=100&amp;title_type=feature,tv_series,tv_movie&amp;ref_=nv_ch_mm_1&apos;, callback=self.index_page)</span><br><span class="line"></span><br><span class="line">    @config(age=24 * 60 * 60)</span><br><span class="line">    def index_page(self, response):</span><br><span class="line">        for each in response.doc(&apos;a[href^=&quot;http&quot;]&apos;).items():</span><br><span class="line">            if re.match(&quot;http://www.imdb.com/title/tt\\d+/$&quot;, each.attr.href):</span><br><span class="line">                self.crawl(each.attr.href, callback=self.detail_page)</span><br><span class="line">        self.crawl([x.attr.href for x in response.doc(&apos;#right a&apos;).items()], callback=self.index_page)</span><br><span class="line"></span><br><span class="line">    @config(priority=2)</span><br><span class="line">    def detail_page(self, response):</span><br><span class="line">        return &#123;</span><br><span class="line">            &quot;url&quot;: response.url,</span><br><span class="line">            &quot;title&quot;: response.doc(&apos;.header &gt; [itemprop=&quot;name&quot;]&apos;).text(),</span><br><span class="line">            &quot;rating&quot;: response.doc(&apos;.star-box-giga-star&apos;).text(),</span><br><span class="line">            &quot;director&quot;: [x.text() for x in response.doc(&apos;[itemprop=&quot;director&quot;] span&apos;).items()],</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure></p>
-<p>##代码剖析<br>原谅博主偷了个懒，这段代码不是博主自己敲的，主要是下班回家写博客确实很累，而且这段代码在pyspider的官方demo，运行情况如下，用来做入门很不错~<br><img src="http://upload-images.jianshu.io/upload_images/1957582-2f645b71fb779289.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="3.png"></p>
+<h2 id="代码预览"><a href="#代码预览" class="headerlink" title="代码预览"></a>代码预览</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">import re</span><br><span class="line">from pyspider.libs.base_handler import *</span><br><span class="line"></span><br><span class="line">class Handler(BaseHandler):</span><br><span class="line"></span><br><span class="line">    @every(minutes=24 * 60)</span><br><span class="line">    def on_start(self):</span><br><span class="line">        self.crawl(&apos;http://www.imdb.com/search/title?count=100&amp;title_type=feature,tv_series,tv_movie&amp;ref_=nv_ch_mm_1&apos;, callback=self.index_page)</span><br><span class="line"></span><br><span class="line">    @config(age=24 * 60 * 60)</span><br><span class="line">    def index_page(self, response):</span><br><span class="line">        for each in response.doc(&apos;a[href^=&quot;http&quot;]&apos;).items():</span><br><span class="line">            if re.match(&quot;http://www.imdb.com/title/tt\\d+/$&quot;, each.attr.href):</span><br><span class="line">                self.crawl(each.attr.href, callback=self.detail_page)</span><br><span class="line">        self.crawl([x.attr.href for x in response.doc(&apos;#right a&apos;).items()], callback=self.index_page)</span><br><span class="line"></span><br><span class="line">    @config(priority=2)</span><br><span class="line">    def detail_page(self, response):</span><br><span class="line">        return &#123;</span><br><span class="line">            &quot;url&quot;: response.url,</span><br><span class="line">            &quot;title&quot;: response.doc(&apos;.header &gt; [itemprop=&quot;name&quot;]&apos;).text(),</span><br><span class="line">            &quot;rating&quot;: response.doc(&apos;.star-box-giga-star&apos;).text(),</span><br><span class="line">            &quot;director&quot;: [x.text() for x in response.doc(&apos;[itemprop=&quot;director&quot;] span&apos;).items()],</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+<h2 id="代码剖析"><a href="#代码剖析" class="headerlink" title="代码剖析"></a>代码剖析</h2><p>原谅博主偷了个懒，这段代码不是博主自己敲的，主要是下班回家写博客确实很累，而且这段代码在pyspider的官方demo，运行情况如下，用来做入门很不错~<br><img src="http://upload-images.jianshu.io/upload_images/1957582-2f645b71fb779289.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="3.png"></p>
 <p>好了，不说废话了。这次我们的目标是<em>IMDb</em>，非常有名的电影资料网站。首先，我们看到这段代码是否觉得和我们上次看到的unittest结构很类似？没错，首先，我们创建的class Handler继承pyspider的BaseHandler。程序的入口是on_start()函数，这段代码没有写crawl_config，一般如果 网站反爬虫机制很强的话，会带上crawl_config，结构如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">crawl_config = &#123;</span><br><span class="line">        &quot;headers&quot; : headers,</span><br><span class="line">        &quot;timeout&quot; : 1000,</span><br><span class="line">        &quot;cookies&quot; : Cookie</span><br><span class="line">        &quot;proxy&quot; : 192.168.1.1:8888</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
 <p>这个我们先简单提一下，在随后的课程再详细介绍。</p>
 <p>我们注意到在on_start()函数上方有这样一段代码<code>@every(minutes=24 * 60)</code>，这是告诉scheduler(调度器)每天调度一次on_start()函数。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">self.crawl(&apos;http://www.imdb.com/search/title?count=100&amp;title_type=feature,tv_series,tv_movie&amp;ref_=nv_ch_mm_1&apos;,callback=self.index_page)</span><br></pre></td></tr></table></figure></p>
@@ -272,7 +272,7 @@
 <p>detail_page函数是用来吧结果储存在数据库中的，如果我们需要对数据进行过滤，还有<code>on_result(self, result)</code>函数，它会传入result作为参数。重写on_result的函数之后我们就可以对数据进行过滤。比如过滤掉一些无用的数据。上面的四行数据处理的代码如果看不懂可以参看前面讲过的知识。</p>
 <p>至此，今天的代码剖析完毕。今天只是讲了一下pyspider的简单应用，pyspider还有很多很实用的方法可以去发觉，比如和phantomJS结合，抓取ajax的动态数据，只需要你的服务器有phantomJs环境，然后再crawl函数中加入<code>self.crawl(&#39;http://www.twitch.tv/directory/game/Dota%202&#39;, fetch_type=&#39;js&#39;, callback=self.index_page)</code>fetch_type即可。</p>
 <p>最后我讲一下pyspider的管理台界面都有什么作用，参见上图的2.png，第一个group我也不是太清楚作用，只知道把group设置为delete然后status设置为stop，24小时之后任务会自动被删除。我们要开始一个任务，需要吧status设置为RUNNING然后在点击后面的run按钮。rate指的是每秒抓取多少次网页，一般情况下建议1以下，不容易被封。brust指的是并发度~后面的active Tasks可以看到现在正在执行的task的状态，最后一个就是抓取的result。</p>
-<p>##写在最后<br>今天我们讲解了pyspider的简单使用，下一章我们讲一下scrapy的简单使用，让大家能上手这个爬虫界的利器。</p>
+<h2 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h2><p>今天我们讲解了pyspider的简单使用，下一章我们讲一下scrapy的简单使用，让大家能上手这个爬虫界的利器。</p>
 <p>最后附上我前两天讲解抓瓜子网信息的代码。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">#!/usr/bin/env python</span><br><span class="line"># -*- encoding: utf-8 -*-</span><br><span class="line"># Created on 2016-05-01 11:31:38</span><br><span class="line"># Project: guazi</span><br><span class="line"></span><br><span class="line">from pyspider.libs.base_handler import *</span><br><span class="line">import pymongo</span><br><span class="line"></span><br><span class="line">class Handler(BaseHandler):</span><br><span class="line">    client = pymongo.MongoClient(&apos;localhost&apos;, 27017)</span><br><span class="line">    guazi2 = client[&apos;guazi2&apos;]</span><br><span class="line">    car = guazi2[&apos;car&apos;]</span><br><span class="line">    </span><br><span class="line">    crawl_config = &#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @every(minutes=24 * 60)</span><br><span class="line">    def on_start(self):</span><br><span class="line">        self.crawl(&apos;http://www.guazi.com/bj/buy&apos;, callback=self.index_page)</span><br><span class="line"></span><br><span class="line">    @config(age=10 * 24 * 60 * 60)</span><br><span class="line">    def index_page(self, response):</span><br><span class="line">        for each in response.doc(&apos;body &gt; div.header &gt; div.hd-top.clearfix &gt; div.c2city &gt; div &gt; div &gt; dl &gt; dd &gt; a&apos;).items():</span><br><span class="line">            self.crawl(each.attr.href, callback=self.second_page)</span><br><span class="line"></span><br><span class="line">    @config(age=10 * 24 * 60 * 60)</span><br><span class="line">    def second_page(self, response):</span><br><span class="line">        num = int(response.doc(&apos;div.seqBox.clearfix &gt; p &gt; b&apos;).text())</span><br><span class="line">        urls = [response.url+&apos;o&#123;&#125;/&apos;.format(str(i)) for i in range(1,num/40+2,1)]</span><br><span class="line">        for each in urls:</span><br><span class="line">            self.crawl(each, callback=self.third_page)</span><br><span class="line">            </span><br><span class="line">    @config(age=10 * 24 * 60 * 60)</span><br><span class="line">    def third_page(self, response):</span><br><span class="line">        for each in response.doc(&apos;div.list &gt; ul &gt; li &gt; div &gt; a&apos;).items():</span><br><span class="line">            self.crawl(each.attr.href, callback=self.detail_page)</span><br><span class="line">            </span><br><span class="line">    @config(priority=2)</span><br><span class="line">    def detail_page(self, response):</span><br><span class="line">        return &#123;</span><br><span class="line">            &quot;url&quot;: response.url,</span><br><span class="line">            &quot;title&quot;: response.doc(&apos;body &gt; div.w &gt; div &gt; div.laybox.clearfix &gt; div.det-sumright.appoint &gt; div.dt-titbox &gt; h1&apos;).text(),</span><br><span class="line">            &quot;address&quot;: response.doc(&apos;body &gt; div.w &gt; div &gt; div.laybox.clearfix &gt; div.det-sumright.appoint &gt; ul &gt; li:nth-child(5) &gt; b&apos;).text(),</span><br><span class="line">            &quot;cartype&quot;: response.doc(&apos;body &gt; div.w &gt; div &gt; div.laybox.clearfix &gt; div.det-sumright.appoint &gt; ul &gt; li:nth-child(3) &gt; b&apos;).text(),</span><br><span class="line">            &quot;price&quot;: response.doc(&apos;body &gt; div.w &gt; div &gt; div.laybox.clearfix &gt; div.det-sumright.appoint &gt; div.basic-box &gt; div.pricebox &gt; span.fc-org.pricestype &gt; b&apos;).text().replace(u&apos;¥&apos;,&apos;&apos;),</span><br><span class="line">            &quot;region&quot;:response.doc(&apos;#base &gt; ul &gt; li.owner&apos;).text()</span><br><span class="line">        &#125;</span><br><span class="line">    </span><br><span class="line">    def on_result(self, result):</span><br><span class="line">        self.car.insert_one(result)</span><br></pre></td></tr></table></figure></p>
 <p>大家做个参考~写的不好，轻喷~</p>
 <blockquote>
@@ -286,6 +286,15 @@
   
     
 <nav id="article-nav">
+  
+    <a href="/2016/05/07/infolite-爬虫利器/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          infolite-爬虫利器~
+        
+      </div>
+    </a>
   
   
     <a href="/2016/05/07/python爬虫的最佳实践-六-爬虫中的多进程/" id="article-nav-older" class="article-nav-link-wrap">

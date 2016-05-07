@@ -173,6 +173,69 @@
 
       <div class="body-wrap">
   
+    <article id="post-infolite-爬虫利器" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/05/07/infolite-爬虫利器/" class="article-date">
+  	<time datetime="2016-05-07T12:45:06.000Z" itemprop="datePublished">2016-05-07</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/05/07/infolite-爬虫利器/">infolite-爬虫利器~</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>只要你确信自己正确就去做。做了有人说不好，不做还是有人说不好，不要逃避批判。</p>
+</blockquote>
+<h2 id="infolite"><a href="#infolite" class="headerlink" title="infolite"></a>infolite</h2><p>今天为大家分享一个爬虫利器—infolite。<br>这是一个chrome浏览器的插件，如果你在写爬虫的时候对复杂繁琐的控件路径分析是深恶痛绝。那么infolite绝对是你最好的选择。</p>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li></ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a  href="/2016/05/07/infolite-爬虫利器/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
     <article id="post-python爬虫的最佳实践-七-pyspider框架的使用" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -200,7 +263,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>Ps：惯例ps环节，经过前面几章的学习，写一些简单的爬虫已经是手到擒来了吧。这章我们看看如何使用pyspider框架来写爬虫~</p>
-<p>##环境配置<br>在这之前简单介绍一下为什么选择这个框架：</p>
+<h2 id="环境配置"><a href="#环境配置" class="headerlink" title="环境配置"></a>环境配置</h2><p>在这之前简单介绍一下为什么选择这个框架：</p>
 <ol>
 <li>这个框架是共和国人民写的(最强大的理由，没有之一)。</li>
 <li>其次，有webUi的界面，如果你有服务器，那么随时随地都可以编写爬虫，在线调试的机制也做得很好。</li>
@@ -449,7 +512,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>课前ps：终于到我们的正文了，想想还有点小激动呢！下来我们就延续我们最佳实践的步骤。</p>
-<p>##代码预览<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">#coding:utf-8</span><br><span class="line">from bs4 import BeautifulSoup</span><br><span class="line">import requests</span><br><span class="line"></span><br><span class="line">def detailOper(url):</span><br><span class="line">    web_data = requests.get(url)</span><br><span class="line">    soup = BeautifulSoup(web_data.text, &apos;lxml&apos;)</span><br><span class="line">    titles = soup.select(&apos;div.list &gt; ul &gt; li &gt; div &gt; p.infoBox &gt; a&apos;)</span><br><span class="line">    prices = soup.select(&apos;div.list &gt; ul &gt; li &gt; div &gt; p.priType-s &gt; span &gt; i&apos;)</span><br><span class="line">    for title, price in zip(titles, prices):</span><br><span class="line">        data = &#123;</span><br><span class="line">            &apos;title&apos;: title.get_text(),</span><br><span class="line">            &apos;detailHerf&apos;: title.get(&apos;href&apos;),</span><br><span class="line">            &apos;price&apos;:price.get_text().replace(u&apos;万&apos;, &apos;&apos;).replace(&apos; &apos;, &apos;&apos;)</span><br><span class="line">        &#125;</span><br><span class="line">        print(data)</span><br><span class="line"></span><br><span class="line">def start():</span><br><span class="line">    urls = [&apos;http://www.guazi.com/tj/buy/o&#123;&#125;/&apos;.format(str(i)) for i in range(1, 30, 1)]</span><br><span class="line">    for url in urls:</span><br><span class="line">        detailOper(url)</span><br><span class="line"></span><br><span class="line">if __name__ == &apos;__main__&apos;:</span><br><span class="line">    start()</span><br></pre></td></tr></table></figure></p>
+<h2 id="代码预览"><a href="#代码预览" class="headerlink" title="代码预览"></a>代码预览</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">#coding:utf-8</span><br><span class="line">from bs4 import BeautifulSoup</span><br><span class="line">import requests</span><br><span class="line"></span><br><span class="line">def detailOper(url):</span><br><span class="line">    web_data = requests.get(url)</span><br><span class="line">    soup = BeautifulSoup(web_data.text, &apos;lxml&apos;)</span><br><span class="line">    titles = soup.select(&apos;div.list &gt; ul &gt; li &gt; div &gt; p.infoBox &gt; a&apos;)</span><br><span class="line">    prices = soup.select(&apos;div.list &gt; ul &gt; li &gt; div &gt; p.priType-s &gt; span &gt; i&apos;)</span><br><span class="line">    for title, price in zip(titles, prices):</span><br><span class="line">        data = &#123;</span><br><span class="line">            &apos;title&apos;: title.get_text(),</span><br><span class="line">            &apos;detailHerf&apos;: title.get(&apos;href&apos;),</span><br><span class="line">            &apos;price&apos;:price.get_text().replace(u&apos;万&apos;, &apos;&apos;).replace(&apos; &apos;, &apos;&apos;)</span><br><span class="line">        &#125;</span><br><span class="line">        print(data)</span><br><span class="line"></span><br><span class="line">def start():</span><br><span class="line">    urls = [&apos;http://www.guazi.com/tj/buy/o&#123;&#125;/&apos;.format(str(i)) for i in range(1, 30, 1)]</span><br><span class="line">    for url in urls:</span><br><span class="line">        detailOper(url)</span><br><span class="line"></span><br><span class="line">if __name__ == &apos;__main__&apos;:</span><br><span class="line">    start()</span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -510,7 +573,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>ps：python环境怎么装我就不赘述了。。。这个资料太多了，我推荐使用python2.7 或 python3.4</p>
-<p>##IDE选择<br>工欲善其事，必先利其器。我本人用过挺多脚本语言的，讲道理，脚本语言很难有出色的ide，但是pycharm绝对是我用过的最赞的脚本语言ide，不要犹豫，直接用它就好了。官网链接：<a href="http://www.jetbrains.com/pycharm/download/">http://www.jetbrains.com/pycharm/download/</a>，最好下载专业版的，方便很多<br>ps:干货之一，pycharm专业版激活server一枚:<a href="http://idea.qinxi1992.cn">http://idea.qinxi1992.cn</a> ，可以反复用哦</p>
+<h2 id="IDE选择"><a href="#IDE选择" class="headerlink" title="IDE选择"></a>IDE选择</h2><p>工欲善其事，必先利其器。我本人用过挺多脚本语言的，讲道理，脚本语言很难有出色的ide，但是pycharm绝对是我用过的最赞的脚本语言ide，不要犹豫，直接用它就好了。官网链接：<a href="http://www.jetbrains.com/pycharm/download/">http://www.jetbrains.com/pycharm/download/</a>，最好下载专业版的，方便很多<br>ps:干货之一，pycharm专业版激活server一枚:<a href="http://idea.qinxi1992.cn">http://idea.qinxi1992.cn</a> ，可以反复用哦</p>
       
     </div>
     
@@ -570,7 +633,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>##一些吐槽<br>首页ps:想看干货的学童请自动跳到下一篇，结尾处有目录。</p>
+        <h2 id="一些吐槽"><a href="#一些吐槽" class="headerlink" title="一些吐槽"></a>一些吐槽</h2><p>首页ps:想看干货的学童请自动跳到下一篇，结尾处有目录。</p>
 <p>第一次提笔真正的开始写一篇技术博客，以前总是认为自己的技术不好，达不到写博客的要求，然后不敢动笔写，后来我发现，技术这条路是无止境的，你并不能学会所有的东西，所有的人都是在互相交流中成长的，所以今天决定拿出一些干货来分享给大家。</p>
       
     </div>
