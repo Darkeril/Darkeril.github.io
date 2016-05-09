@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>python爬虫的最佳实践(八)--初探Scrapy | Darkeril&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="程序员可以让步，却不可以退缩，可以羞涩，却不可以软弱，总之，程序员必须是勇敢的
+
+本节目标
+配置scrapy环境，创建第一个scrapy项目
+了解scrapy项目结构。
+使用scrapy成功编写一个爬虫。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python爬虫的最佳实践(八)--初探Scrapy">
+<meta property="og:url" content="http://yoursite.com/2016/05/09/python爬虫的最佳实践-八-初探Scrapy/index.html">
+<meta property="og:site_name" content="Darkeril's blog">
+<meta property="og:description" content="程序员可以让步，却不可以退缩，可以羞涩，却不可以软弱，总之，程序员必须是勇敢的
+
+本节目标
+配置scrapy环境，创建第一个scrapy项目
+了解scrapy项目结构。
+使用scrapy成功编写一个爬虫。">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1957582-b45198d09ab593b5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1957582-9b5ec967edf5a872.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1957582-b45198d09ab593b5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1957582-9b5ec967edf5a872.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1957582-3cb29bfa8467988a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1957582-c7fef1426f1c329d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1957582-a5bc98e36ae47e1f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2016-05-09T13:06:04.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="python爬虫的最佳实践(八)--初探Scrapy">
+<meta name="twitter:description" content="程序员可以让步，却不可以退缩，可以羞涩，却不可以软弱，总之，程序员必须是勇敢的
+
+本节目标
+配置scrapy环境，创建第一个scrapy项目
+了解scrapy项目结构。
+使用scrapy成功编写一个爬虫。">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/1957582-b45198d09ab593b5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+  
+    <link rel="alternative" href="/atom.xml" title="Darkeril&#39;s blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="http://o6omzqff6.bkt.clouddn.com/icon.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Darkeril</a></h1>
+		</hgroup>
+
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						
+						<li>关于我</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="#" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="#" title="weibo">weibo</a>
+					        
+								<a class="rss" target="_blank" href="#" title="rss">rss</a>
+					        
+								<a class="zhihu" target="_blank" href="#" title="zhihu">zhihu</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/python/" style="font-size: 10px;">python</a>
+					</div>
+				</section>
+				
+				
+				
+
+				
+				
+				<section class="switch-part switch-part3">
+				
+					<div id="js-aboutme">python的忠实爱好者，QQ：403508380，QQ群：498945822</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">Darkeril</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+			
+				<img lazy-src="http://o6omzqff6.bkt.clouddn.com/icon.jpg" class="js-avatar">
+			
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Darkeril</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="#" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="#" title="weibo">weibo</a>
+			        
+						<a class="rss" target="_blank" href="#" title="rss">rss</a>
+			        
+						<a class="zhihu" target="_blank" href="#" title="zhihu">zhihu</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap"><article id="post-python爬虫的最佳实践-八-初探Scrapy" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/05/09/python爬虫的最佳实践-八-初探Scrapy/" class="article-date">
+  	<time datetime="2016-05-09T13:04:12.000Z" itemprop="datePublished">2016-05-09</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      python爬虫的最佳实践(八)--初探Scrapy
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li></ul>
+	</div>
+
+        
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>程序员可以让步，却不可以退缩，可以羞涩，却不可以软弱，总之，程序员必须是勇敢的</p>
+</blockquote>
+<h2 id="本节目标"><a href="#本节目标" class="headerlink" title="本节目标"></a>本节目标</h2><ol>
+<li>配置scrapy环境，创建第一个scrapy项目</li>
+<li>了解scrapy项目结构。</li>
+<li>使用scrapy成功编写一个爬虫。</li>
+</ol>
+<a id="more"></a>
+<h2 id="框架介绍"><a href="#框架介绍" class="headerlink" title="框架介绍"></a>框架介绍</h2><p>scrapy框架可以说是python爬虫界最有名的框架之一。scrapy框架内置了一套爬虫的执行流程，这样我们就不需要重复造轮子。直接使用它的流程，在它的基础上设计我们自己的爬虫，可以使我们的效率提升很多。而且scrapy内部使用的Twisted框架可以帮我实现非同步化请求，也就是不会阻塞。使我们的效率又有提升。</p>
+<h3 id="小插曲"><a href="#小插曲" class="headerlink" title="小插曲"></a>小插曲</h3><p>有人说，<em>virtualenv</em>、<em>pip</em>是pythonner的两大神器。<em>pip</em>我们在之前的项目中用过很多次了，今天来告诉大家<em>virtualenv</em>怎么使用。</p>
+<p>所谓<em>virtualenv</em>，你可以简单的理解为创建一个虚拟的python环境，这个python环境是和本机的其他python环境互不干扰的，所以随你怎么玩~玩坏了删除了重新创建就好了。</p>
+<p>首先，打开pycharm。选择file-&gt;Default Setting，如图：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1957582-b45198d09ab593b5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="1.png"></p>
+<p>单击左上角setting标准，选择Create VirtualEnv，如图：<br><img src="http://upload-images.jianshu.io/upload_images/1957582-9b5ec967edf5a872.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="2.png"></p>
+<p>给你的virtyalEnv起个名字，然后选择基础的python环境，记得勾选下面的Inhert global site-packages选项，这回复制你安装的第三方库到你的虚拟环境中，就不用再安装一次了。</p>
+<p>这样，一个虚拟环境便创建好了，你到指定的位置可以看到一个虚拟环境的文件夹，进入可以看到一个完整的python环境，python的第三方库都在Scripts文件夹下可以找到，如果要给虚拟环境安装第三方库，可以从pycharm安装，也可以直接运行 虚拟环境根目录\Scripts\pip.exe install packageName。好了这样我们的虚拟环境变创建好了。</p>
+<h2 id="安装scrapy"><a href="#安装scrapy" class="headerlink" title="安装scrapy"></a>安装scrapy</h2><p>建议用python2.x的版本安装。<br>打开pycharm，选择 file-&gt;Default Setting，选中刚刚创建的虚拟环境，点击+，在搜索框中输入scrapy。如图：</p>
+<blockquote>
+<p>程序员可以让步，却不可以退缩，可以羞涩，却不可以软弱，总之，程序员必须是勇敢的</p>
+</blockquote>
+<h2 id="本节目标-1"><a href="#本节目标-1" class="headerlink" title="本节目标"></a>本节目标</h2><ol>
+<li>配置scrapy环境，创建第一个scrapy项目</li>
+<li>了解scrapy项目结构。</li>
+<li>使用scrapy成功编写一个爬虫。</li>
+</ol>
+<h3 id="小插曲-1"><a href="#小插曲-1" class="headerlink" title="小插曲"></a>小插曲</h3><p>有人说，<em>virtualenv</em>、<em>pip</em>是pythonner的两大神器。<em>pip</em>我们在之前的项目中用过很多次了，今天来告诉大家<em>virtualenv</em>怎么使用。</p>
+<p>所谓<em>virtualenv</em>，你可以简单的理解为创建一个虚拟的python环境，这个python环境是和本机的其他python环境互不干扰的，所以随你怎么玩~玩坏了删除了重新创建就好了。</p>
+<p>首先，打开pycharm。选择file-&gt;Default Setting，如图：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1957582-b45198d09ab593b5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="1.png"></p>
+<p>单击左上角setting标准，选择Create VirtualEnv，如图：<br><img src="http://upload-images.jianshu.io/upload_images/1957582-9b5ec967edf5a872.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="2.png"></p>
+<p>给你的virtyalEnv起个名字，然后选择基础的python环境，记得勾选下面的Inhert global site-packages选项，这回复制你安装的第三方库到你的虚拟环境中，就不用再安装一次了。</p>
+<p>这样，一个虚拟环境便创建好了，你到指定的位置可以看到一个虚拟环境的文件夹，进入可以看到一个完整的python环境，python的第三方库都在Scripts文件夹下可以找到，如果要给虚拟环境安装第三方库，可以从pycharm安装，也可以直接运行 虚拟环境根目录\Scripts\pip.exe install packageName。好了这样我们的虚拟环境变创建好了。</p>
+<h2 id="安装scrapy-1"><a href="#安装scrapy-1" class="headerlink" title="安装scrapy"></a>安装scrapy</h2><p>建议用python2.x的版本安装。<br>打开pycharm，选择 file-&gt;Default Setting，选中刚刚创建的虚拟环境，点击+，在搜索框中输入scrapy。如图：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1957582-3cb29bfa8467988a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="3.png"></p>
+<p>点击安装等待安装完毕即可。</p>
+<h2 id="创建项目"><a href="#创建项目" class="headerlink" title="创建项目"></a>创建项目</h2><p>首先把刚刚创建的虚拟环境的Scripts文件夹加入到环境变量中，然后运行scrapy startproject tutorial，执行完毕后可以看到tutorial项目已经被创建在根目录下，目录结构如下：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1957582-c7fef1426f1c329d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="4.png"></p>
+<p>下面来简单介绍一下各个文件的作用：</p>
+<ul>
+<li>scrapy.cfg：项目的配置文件</li>
+<li>items.py：项目的items文件，用来定义数据结构</li>
+<li>pipelines.py：项目的pipelines文件，用来处理数据</li>
+<li>settings.py：项目的设置文件</li>
+<li>spiders/：存储爬虫的目录</li>
+</ul>
+<p>接下来我们创建第一个scrapy爬虫</p>
+<h2 id="第一个scrapy爬虫"><a href="#第一个scrapy爬虫" class="headerlink" title="第一个scrapy爬虫"></a>第一个scrapy爬虫</h2><p>在spiders目录下创建一个新的python文件命名为test.py，然后代码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">#coding:utf-8</span><br><span class="line">import scrapy</span><br><span class="line">from scrapy.spiders import BaseSpider</span><br><span class="line">from bs4 import BeautifulSoup</span><br><span class="line"></span><br><span class="line">class testSpider(scrapy.Spider):</span><br><span class="line">    name = &apos;test&apos;</span><br><span class="line">    start_urls = [&apos;https://s.2.taobao.com/list/list.htm?spm=2007.1000337.0.0.RrSiSG&amp;catid=50100398&amp;st_trust=1&amp;page=1&amp;ist=0&apos;]</span><br><span class="line"></span><br><span class="line">    def parse(self, response):</span><br><span class="line">        for title in response.xpath(&apos;//*[contains(concat( &quot; &quot;, @class, &quot; &quot; ), concat( &quot; &quot;, &quot;item-title&quot;, &quot; &quot; ))]//a&apos;):</span><br><span class="line">            yield scrapy.Request(&apos;http:&apos;+title.xpath(&apos;@href&apos;).extract()[0], self.detail)</span><br><span class="line"></span><br><span class="line">    def detail(self, response):</span><br><span class="line">        data = BeautifulSoup(response.body, &apos;lxml&apos;)</span><br><span class="line">        area = data.select(&apos;#J_Property &gt; h1&apos;)</span><br><span class="line">        print area[0].get_text()</span><br></pre></td></tr></table></figure></p>
+<p>首先引入库scrapy，紧接着引入库beautifulsoup，没错，scrapy可以和beautifulsoup结合起来使用</p>
+<p><code>name = &#39;test&#39;</code>定义了这个爬虫的名称，这个名称必须是唯一的，以便用来区分其他爬虫。<br><code>start_urls = [&#39;https://s.2.taobao.com/list/list.htm?spm=2007.1000337.0.0.RrSiSG&amp;catid=50100398&amp;st_trust=1&amp;page=1&amp;ist=0&#39;]</code><br>定义了开始的url，这个和pyspider类似，可以填入多个url。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">def parse(self, response):</span><br><span class="line">        for title in response.xpath(&apos;//*[contains(concat( &quot; &quot;, @class, &quot; &quot; ), concat( &quot; &quot;, &quot;item-title&quot;, &quot; &quot; ))]//a&apos;):</span><br><span class="line">            yield scrapy.Request(&apos;http:&apos;+title.xpath(&apos;@href&apos;).extract()[0], self.detail)</span><br></pre></td></tr></table></figure></p>
+<p>parse这个函数是我们继承的scrapy.Spiderclass里面内置的函数，我们对它进行重写，当我们的spider开始运行的时候会首先请求start_urls里面的链接并调用parse函数，给其返回一个response对象。</p>
+<p><code>response.xpath(&#39;//*[contains(concat( &quot; &quot;, @class, &quot; &quot; ), concat( &quot; &quot;, &quot;item-title&quot;, &quot; &quot; ))]//a&#39;)</code></p>
+<p>上面这句是使用xpath定位标签，scrapy支持xpath，还记得上节介绍的infolite么，刚好可以结合起来使用。如图得到了我们要的title的xpath：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1957582-a5bc98e36ae47e1f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="5.png"></p>
+<p>我们选择咸鱼网的列表的title，然后创建一个yield迭代器去遍历每个title里面的url，代码如下：</p>
+<p><code>yield scrapy.Request(&#39;http:&#39;+title.xpath(&#39;@href&#39;).extract()[0], self.detail)</code></p>
+<p>scrapy.Request函数第一个参数传入url，第二个参数传入callback。对于我们已经取出来的title的a标签，我们依然可以通过xpath取出里面的属性<code>title.xpath(&#39;@href&#39;)</code>，如果要取出文字，则使用<code>title.xpath(&#39;text()&#39;)</code>。</p>
+<p>接下来我们进入到detail函数：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">def detail(self, response):</span><br><span class="line">        data = BeautifulSoup(response.body, &apos;lxml&apos;)</span><br><span class="line">        area = data.select(&apos;#J_Property &gt; h1&apos;)</span><br><span class="line">        print area[0].get_text()</span><br></pre></td></tr></table></figure></p>
+<p>一如我们之前讲解的，在这里，我们用beautifulsoup解析response.body，然后通过csspath取出我们想要的信息。</p>
+<p>至此，我们第一个scrapy爬虫就写完了，是不是比想象中的简单呢？</p>
+<h2 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h2><p>今天，我们简单介绍了scrapy并实现了一个scrapy爬虫，下一节是scrapy的进阶篇，我们将介绍scrapy中items 与pipelines的用法。小伙伴们可以用scrapy把我们之前写过的爬虫再重新试试，看看效率如何~</p>
+<blockquote>
+<p>有兴趣的同学可以加群498945822一起交流学习哦~~<br>发现问题的同学欢迎指正，直接说就行，不用留面子，博主脸皮厚！</p>
+</blockquote>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2016/05/07/infolite-爬虫利器/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">infolite-爬虫利器~</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+    <a class="jiathis_button_twitter"></a>
+    <a class="jiathis_button_plus"></a> 
+    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="python爬虫的最佳实践-八-初探Scrapy" data-title="python爬虫的最佳实践(八)--初探Scrapy" data-url="http://yoursite.com/2016/05/09/python爬虫的最佳实践-八-初探Scrapy/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 Darkeril
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>
