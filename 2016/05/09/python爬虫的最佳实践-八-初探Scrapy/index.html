@@ -24,12 +24,10 @@
 使用scrapy成功编写一个爬虫。">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1957582-b45198d09ab593b5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1957582-9b5ec967edf5a872.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1957582-b45198d09ab593b5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1957582-9b5ec967edf5a872.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1957582-3cb29bfa8467988a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1957582-c7fef1426f1c329d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1957582-a5bc98e36ae47e1f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2016-05-09T13:06:04.000Z">
+<meta property="og:updated_time" content="2016-05-29T02:00:15.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python爬虫的最佳实践(八)--初探Scrapy">
 <meta name="twitter:description" content="程序员可以让步，却不可以退缩，可以羞涩，却不可以软弱，总之，程序员必须是勇敢的
@@ -131,7 +129,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/python/" style="font-size: 10px;">python</a>
+						<a href="/tags/python/" style="font-size: 20px;">python</a> <a href="/tags/ss/" style="font-size: 10px;">ss</a>
 					</div>
 				</section>
 				
@@ -241,7 +239,6 @@
 <li>使用scrapy成功编写一个爬虫。</li>
 </ol>
 <a id="more"></a>
-<h2 id="框架介绍"><a href="#框架介绍" class="headerlink" title="框架介绍"></a>框架介绍</h2><p>scrapy框架可以说是python爬虫界最有名的框架之一。scrapy框架内置了一套爬虫的执行流程，这样我们就不需要重复造轮子。直接使用它的流程，在它的基础上设计我们自己的爬虫，可以使我们的效率提升很多。而且scrapy内部使用的Twisted框架可以帮我实现非同步化请求，也就是不会阻塞。使我们的效率又有提升。</p>
 <h3 id="小插曲"><a href="#小插曲" class="headerlink" title="小插曲"></a>小插曲</h3><p>有人说，<em>virtualenv</em>、<em>pip</em>是pythonner的两大神器。<em>pip</em>我们在之前的项目中用过很多次了，今天来告诉大家<em>virtualenv</em>怎么使用。</p>
 <p>所谓<em>virtualenv</em>，你可以简单的理解为创建一个虚拟的python环境，这个python环境是和本机的其他python环境互不干扰的，所以随你怎么玩~玩坏了删除了重新创建就好了。</p>
 <p>首先，打开pycharm。选择file-&gt;Default Setting，如图：</p>
@@ -250,22 +247,6 @@
 <p>给你的virtyalEnv起个名字，然后选择基础的python环境，记得勾选下面的Inhert global site-packages选项，这回复制你安装的第三方库到你的虚拟环境中，就不用再安装一次了。</p>
 <p>这样，一个虚拟环境便创建好了，你到指定的位置可以看到一个虚拟环境的文件夹，进入可以看到一个完整的python环境，python的第三方库都在Scripts文件夹下可以找到，如果要给虚拟环境安装第三方库，可以从pycharm安装，也可以直接运行 虚拟环境根目录\Scripts\pip.exe install packageName。好了这样我们的虚拟环境变创建好了。</p>
 <h2 id="安装scrapy"><a href="#安装scrapy" class="headerlink" title="安装scrapy"></a>安装scrapy</h2><p>建议用python2.x的版本安装。<br>打开pycharm，选择 file-&gt;Default Setting，选中刚刚创建的虚拟环境，点击+，在搜索框中输入scrapy。如图：</p>
-<blockquote>
-<p>程序员可以让步，却不可以退缩，可以羞涩，却不可以软弱，总之，程序员必须是勇敢的</p>
-</blockquote>
-<h2 id="本节目标-1"><a href="#本节目标-1" class="headerlink" title="本节目标"></a>本节目标</h2><ol>
-<li>配置scrapy环境，创建第一个scrapy项目</li>
-<li>了解scrapy项目结构。</li>
-<li>使用scrapy成功编写一个爬虫。</li>
-</ol>
-<h3 id="小插曲-1"><a href="#小插曲-1" class="headerlink" title="小插曲"></a>小插曲</h3><p>有人说，<em>virtualenv</em>、<em>pip</em>是pythonner的两大神器。<em>pip</em>我们在之前的项目中用过很多次了，今天来告诉大家<em>virtualenv</em>怎么使用。</p>
-<p>所谓<em>virtualenv</em>，你可以简单的理解为创建一个虚拟的python环境，这个python环境是和本机的其他python环境互不干扰的，所以随你怎么玩~玩坏了删除了重新创建就好了。</p>
-<p>首先，打开pycharm。选择file-&gt;Default Setting，如图：</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/1957582-b45198d09ab593b5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="1.png"></p>
-<p>单击左上角setting标准，选择Create VirtualEnv，如图：<br><img src="http://upload-images.jianshu.io/upload_images/1957582-9b5ec967edf5a872.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="2.png"></p>
-<p>给你的virtyalEnv起个名字，然后选择基础的python环境，记得勾选下面的Inhert global site-packages选项，这回复制你安装的第三方库到你的虚拟环境中，就不用再安装一次了。</p>
-<p>这样，一个虚拟环境便创建好了，你到指定的位置可以看到一个虚拟环境的文件夹，进入可以看到一个完整的python环境，python的第三方库都在Scripts文件夹下可以找到，如果要给虚拟环境安装第三方库，可以从pycharm安装，也可以直接运行 虚拟环境根目录\Scripts\pip.exe install packageName。好了这样我们的虚拟环境变创建好了。</p>
-<h2 id="安装scrapy-1"><a href="#安装scrapy-1" class="headerlink" title="安装scrapy"></a>安装scrapy</h2><p>建议用python2.x的版本安装。<br>打开pycharm，选择 file-&gt;Default Setting，选中刚刚创建的虚拟环境，点击+，在搜索框中输入scrapy。如图：</p>
 <p><img src="http://upload-images.jianshu.io/upload_images/1957582-3cb29bfa8467988a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="3.png"></p>
 <p>点击安装等待安装完毕即可。</p>
 <h2 id="创建项目"><a href="#创建项目" class="headerlink" title="创建项目"></a>创建项目</h2><p>首先把刚刚创建的虚拟环境的Scripts文件夹加入到环境变量中，然后运行scrapy startproject tutorial，执行完毕后可以看到tutorial项目已经被创建在根目录下，目录结构如下：</p>
@@ -304,6 +285,15 @@
   
     
 <nav id="article-nav">
+  
+    <a href="/2016/05/29/ss翻墙教程/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          ss翻墙教程
+        
+      </div>
+    </a>
   
   
     <a href="/2016/05/07/infolite-爬虫利器/" id="article-nav-older" class="article-nav-link-wrap">
